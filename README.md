@@ -1,10 +1,10 @@
 # tw-problem1
 
-### Prerequisite
+###1. Prerequisite
 
 Need to install VirtualBox & Vagrant on the local box.
 
-### Create the environment
+###2. Create the Setup
 
 It will create the VM and setup for docker containerization.  
 ```
@@ -12,64 +12,64 @@ git clone https://github.com/gkbijarniya/tw-problem1.git
 vagrant up
 ```
 
-### Create the Training environment
+###3. Create the Training environment
 
-#### Build the environment
+####3.1 Build the environment
 
 ```
 vagrant ssh -c "cd /vagrant/train && sudo docker-compose build"
 ```
 
-#### Run the environment
+####3.2 Run the environment
 
 ```
 vagrant ssh -c "cd /vagrant/train && sudo docker-compose up -d"
 ```
 
-#### Test the environment
+#### 3.3Test the environment
 
 Access the url http://localhost:8080 from the localhost/host
 
 
-#### Scale the environment
+####3.4 Scale the environment
 
 ```
 vagrant ssh -c "cd /vagrant/train && sudo docker-compose scale web=2"
 ```
 
-#### Shutdown the environment
+####3.5 Shutdown the environment
 
 ```
 vagrant ssh -c "cd /vagrant/train && sudo docker-compose down"
 ```
 
 
-### Create the Production environment
+###4. Create the Production environment
 
-#### Build the environment
+####4.1 Build the environment
 
 ```
 vagrant ssh -c "cd /vagrant/prod && sudo docker-compose build"
 ```
 
-#### Run the environment
+####4.2 Run the environment
 
 ```
 vagrant ssh -c "cd /vagrant/prod && sudo docker-compose up -d"
 ```
 
-#### Test the environment
+####4.3 Test the environment
 
 Access the url http://localhost:8080 from the localhost/host
 
 
-#### Scale the environment
+####4.4 Scale the environment
 
 ```
 vagrant ssh -c "cd /vagrant/prod && sudo docker-compose scale web=2"
 ```
 
-#### Shutdown the environment
+####4.5 Shutdown the environment
 
 ```
 vagrant ssh -c "cd /vagrant/prod && sudo docker-compose down"
