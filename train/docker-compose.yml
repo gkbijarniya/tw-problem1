@@ -1,0 +1,14 @@
+version: '2'
+services:
+  web:
+    build: ./web/
+    ports:
+      - 8080
+    volumes:
+      - ../data:/var/tmp/persistence
+  static:
+    build: ./static/
+    links:
+      - web
+    ports:
+      - 80:80

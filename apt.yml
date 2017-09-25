@@ -1,0 +1,55 @@
+- name: "Install & Configure apt packages"
+  hosts: all
+  gather_facts: no
+  become: yes
+  tasks:
+  - name: "configure repository"
+    apt:
+      name: software-properties-common
+
+  - name: "Add ppa:ansible/ansible repository"
+    shell: "apt-add-repository ppa:ansible/ansible"
+
+  - name: "Update apt-cache"
+    apt: 
+      update_cache: yes 
+
+  - name: "Install python-pip"
+    apt: 
+      name: python-pip
+
+  - name: "Download Docker "
+    shell: "curl -sSL https://get.docker.com -o /var/tmp/docker_install.sh && chmod 755 /var/tmp/docker_install.sh"
+
+  - name: "Check if Docker installed"
+    shell: which docker
+    register: result
+    ignore_errors: True
+
+  - name: "Install Docker if not"
+    command: /var/tmp/docker_install.sh
+    when: result|failed
+
+  - name: "Install docker-py>=1.7.0"
+    pip: 
+      name: 'docker-py>=1.7.0'
+
+  - name: "Install docker-compose>=1.7.0"
+    pip: 
+      name: 'docker-compose>=1.7.0'
+
+  - name: "Install docker-compose"
+    get_url: 
+      url: "https://github.com/docker/compose/releases/download/1.7.0/docker-compose-Linux-x86_64"
+      dest: /usr/local/bin/docker-compose 
+      mode: 755
+
+  - name: "Install docker-machine"
+    get_url: 
+      url: "https://github.com/docker/machine/releases/download/v0.6.0/docker-machine-Linux-x86_64"
+      dest: /usr/local/bin/docker-machine 
+      mode: 755
+
+  - name: "Ansible"
+    apt: 
+      name: "ansible"
