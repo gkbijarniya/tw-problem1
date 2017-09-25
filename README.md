@@ -8,7 +8,8 @@ Need to install VirtualBox & Vagrant on the local box.
 
 It will create the VM and setup for docker containerization.  
 ```
-git clone https://github.com/gkbijarniya/tw-problem1.git  
+git clone https://github.com/gkbijarniya/tw-problem1.git
+cd tw-problem1.git
 vagrant up
 ```
 
